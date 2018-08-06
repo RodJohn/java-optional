@@ -7,18 +7,53 @@ import java.util.Optional;
 public class T1 {
 
     Person personNull = null;
-    Person personDefault = new Person();
+    Person person = new Person();
+    Person personWithPet = new Person();
 
     {
-        personDefault.setName("john");
+        person.setName("john");
+        Pet pet = new Pet();
+        personWithPet.setPet(pet);
     }
 
 
     @Test
+    /**
+     * if null return  NoSuchElementException
+     */
+    public void nullAndGet() {
+        System.out.println(
+                Optional.ofNullable(personNull).get());
+    }
+
+
+    @Test
+    /**
+     * if null return Default
+     */
     public void nullOrDefault() {
         System.out.println(
+                Optional.ofNullable(personNull).orElse(person));
+        System.out.println(
+                Optional.ofNullable(personNull).orElseGet(() -> person ));
+    }
+
+
+    @Test
+    /**
+     * if null in the stream return Default
+     */
+    public void nullOrDefault1() {
+        System.out.println(
                 Optional.ofNullable(personNull)
-                        .orElse(personDefault).getName());
+                        .map(person -> person.getPet())
+                        .map(pet -> pet.getName())
+                        .orElse("默认的宠物"));
+        System.out.println(
+                Optional.ofNullable(person)
+                        .map(person -> person.getPet())
+                        .map(pet -> pet.getName())
+                        .orElse("默认的宠物"));
     }
 
 
