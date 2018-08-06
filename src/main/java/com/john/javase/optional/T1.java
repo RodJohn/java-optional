@@ -26,6 +26,15 @@ public class T1 {
                 Optional.ofNullable(personNull).get());
     }
 
+    @Test
+    /**
+     * if null return  Exception
+     */
+    public void nullAndThrow() {
+        System.out.println(
+                Optional.ofNullable(personNull).orElseThrow(new NotFoundException(" no such  person ")));
+    }
+
 
     @Test
     /**
