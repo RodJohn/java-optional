@@ -23,7 +23,7 @@ map
     
 orElse
 
-    返回默认值
+    返回默认值（不会逻辑短路）
 
 orElseThrow
 
