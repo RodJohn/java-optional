@@ -26,15 +26,13 @@ public class T1_Default {
     }
 
 
-
     @Test
     /**
      * 不会逻辑短路
      */
     public void nullOrDefaultDo() {
         System.out.println(
-                Optional.
-                        ofNullable(getNull())
+                Optional.ofNullable(getNull())
                         .orElse(getDefault()));
     }
 

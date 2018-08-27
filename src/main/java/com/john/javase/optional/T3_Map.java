@@ -2,6 +2,7 @@ package com.john.javase.optional;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class T3_Map {
@@ -16,7 +17,6 @@ public class T3_Map {
         pet.setName("alf");
         personWithPet.setPet(pet);
     }
-
 
 
     @Test
@@ -53,6 +53,24 @@ public class T3_Map {
                         .map(pet -> pet.getName())
                         .filter(name -> !name.equals("alf"))
                         .orElse("默认的宠物"));
+    }
+
+    @Test
+    /**
+     * if other exception ,will be throw at once
+     */
+    public void otherException() {
+
+        ArrayList<Object> arrayList = new ArrayList<>();
+        ArrayList<Object> nullList = null;
+
+        System.out.println(Optional.ofNullable(arrayList).filter(list -> list.size() > 0).map(list -> list.get(0)).orElse(null));
+        System.out.println(Optional.ofNullable(nullList).filter(list -> list.size() > 0).map(list -> list.get(0)).orElse(null));
+
+        System.out.println(Optional.ofNullable(nullList).map(list -> list.get(0)).orElse(null));
+        System.out.println(Optional.ofNullable(arrayList).map(list -> list.get(0)).orElse(null));
+        // 数组下标越界异常
+
     }
 
 
